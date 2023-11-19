@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo
+
+    </title>
+</head>
+<body>
+    <!-- views/index.ejs -->
+<form action="/create-task" method="POST">
+    <input type="text" name="taskName" placeholder="Task name" required>
+    <button type="submit">Add Task</button>
+  </form>
+  <!-- views/index.ejs -->
+<ul>
+    <% tasks.forEach(task => { %>
+      <li>
+        <input type="checkbox" <% if (task.completed) { %>checked<% } %> onchange="completeTask('<%= task._id %>')">
+        <span class="<% if (task.completed) { %>completed<% } %>"><%= task.name %></span>
+      </li>
+    <% }); %>
+  </ul>
+  
+
+  <h1>Task List</h1>
+  <ul>
+    <% tasks.forEach(task => { %>
+      <li><%= task.name %></li>
+    <% }); %>
+  </ul>
+  
+</body>
+</html>

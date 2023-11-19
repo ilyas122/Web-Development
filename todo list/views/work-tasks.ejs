@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Tasks</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Work Tasks</h1>
+
+        <ul class="task-list">
+            <% workTasks.forEach(task => { %>
+                <li>
+                    <form action="/complete-task/<%= task._id %>" method="POST">
+                        <input type="checkbox" <%= task.completed ? 'checked' : '' %> onChange="this.form.submit()" />
+                        <span class="<%= task.completed ? 'completed' : '' %>"><%= task.name %></span>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+
+        <a href="/">Back to Task List</a>
+    </div>
+</body>
+</html>

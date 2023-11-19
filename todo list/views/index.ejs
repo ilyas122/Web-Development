@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>My Task List</h1>
+
+        <form action="/add-task" method="post">
+            <input type="text" name="name" placeholder="Enter a new task" required />
+            <button type="submit">Add Task</button>
+        </form>
+        
+        <ul class="task-list">
+            <% tasks.forEach(task => { %>
+                <li>
+                    <form action="/complete-task/<%= task._id %>" method="POST">
+                        <input type="checkbox" <%= task.completed ? 'checked' : '' %> onChange="this.form.submit()" />
+                        <span class="<%= task.completed ? 'completed' : '' %>"><%= task.name %></span>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+
+        <ul class="task-list">
+            <% tasks.forEach(task => { %>
+                <li>
+                    <form action="/complete-task/<%= task._id %>" method="POST">
+                        <input type="checkbox" <%= task.completed ? 'checked' : '' %> onChange="this.form.submit()" />
+                        <span class="task-name <%= task.completed ? 'completed' : '' %>"><%= task.name %></span>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+        
+        
+
+        <a href="/work-tasks">Work Tasks</a>
+    </div>
+</body>
+</html>
